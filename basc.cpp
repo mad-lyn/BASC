@@ -4,14 +4,24 @@
 #include <string>
 #include <vector>
 
-Basc::Basc(){
-  nums.push_back(15);
-  bits = "We bits work";
-  b = 5;
+Basc::Basc(int b_init){
+  b = b_init;
 }
 
-void Basc::do_something(){
+void Basc::set_nums(std::vector<int> given_nums){
+  nums = given_nums;
+}
+
+void Basc::set_bits(std::string given_bits){
+  bits = given_bits;
+}
+
+void Basc::show_nums(){
+  for(int x : nums){
+    std::cout << x << '\n';
+  }
+}
+
+void Basc::show_bits(){
   std::cout << bits << '\n';
-  std::cout << nums[0] << '\n';
-  std::cout << b << '\n';
 }
