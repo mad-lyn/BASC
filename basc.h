@@ -16,7 +16,9 @@ public:
   void set_bits(std::string given_bits);
   void show_nums();
   void show_bits();
+
   void encode();
+  void decode();
 };
 
 #endif // BASC_H

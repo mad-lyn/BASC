@@ -20,8 +20,9 @@ void Basc::set_bits(std::string given_bits){
 
 void Basc::show_nums(){
   for(int x : nums){
-    std::cout << x << '\n';
+    std::cout << x << ' ';
   }
+  std::cout << '\n';
 }
 
 void Basc::show_bits(){
@@ -57,5 +58,53 @@ void Basc::encode(){
     }
 
     b = new_b;
+  }
+}
+
+void Basc::decode(){
+  int i = 0;
+  std::string encoded_bits = "";
+  int decoded_num;
+
+  while(i < bits.length()){
+    if(bits.at(i) == '0'){
+      i++;
+      for(int j = 0; j < b; j++){
+        encoded_bits += bits.at(i);
+        i++;
+      }
+
+      int offset = encoded_bits.find("1");
+
+      if(offset == -1){
+        b = 0;
+      }else{
+        b -= offset;
+      }
+
+    }else{
+      while(bits.at(i) != '0'){
+        i++;
+        b++;
+      }
+      i++;
+      encoded_bits += "1";
+      for(int j = 0; j < b-1; j++){
+        encoded_bits += bits.at(i);
+        i++;
+      }
+    }
+
+    std::cout << "encoded_bits: " << encoded_bits << '\n';
+
+    if(encoded_bits.length() == 0){
+      decoded_num = 0;
+    }else{
+      decoded_num = stoi(encoded_bits,0,2);
+    }
+
+    encoded_bits.clear();
+    std::cout << "Decoded " << decoded_num << '\n';
+    nums.push_back(decoded_num);
   }
 }
